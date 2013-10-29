@@ -65,20 +65,20 @@ abstract class PMG_Related_Base
 
     abstract public function _setup();
 
-    final public function opt($key, $default='')
+    final public static function opt($key, $default='')
     {
         $opts = get_option(self::SETTING, array());
         return !empty($opts[$key]) ? $opts[$key] : $default;
     }
 
-    final public function get_types()
+    final public static function get_types()
     {
         return apply_filters('pmg_related_post_types', get_post_types(array(
             'public'  => true,
         ), 'objects'));
     }
 
-    final public function get_taxonomies_for_type($type)
+    final public static function get_taxonomies_for_type($type)
     {
         return apply_filters("pmg_related_{$type}_taxonomies", get_taxonomies(array(
             'object_type' => array($type),
